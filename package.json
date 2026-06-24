@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "import:sec13f": "tsx scripts/import-sec-13f.ts",
+    "import:form4": "tsx scripts/import-sec-form4.ts",
+    "import:house": "tsx scripts/import-house-disclosures.ts",
+    "import:senate": "tsx scripts/import-senate-disclosures.ts"
   },
   "dependencies": {
     "@next/third-parties": "^15.3.4",
@@ -27,6 +31,7 @@
     "eslint-config-next": "^15.3.4",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   }
 }

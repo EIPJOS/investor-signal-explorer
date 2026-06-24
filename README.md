@@ -72,6 +72,21 @@ SEC and disclosure imports should be added in:
 
 Do not implement real scraping until source terms, rate limits, normalization rules, and storage schema are finalized.
 
+## Supabase Schema
+
+The database target lives in `supabase/schema.sql`, with setup notes in `supabase/README.md`.
+
+The import commands are intentionally placeholders until credentials and data-source policies are finalized:
+
+```bash
+npm run import:sec13f
+npm run import:form4
+npm run import:house
+npm run import:senate
+```
+
+They currently throw explicit "not implemented" errors so nobody accidentally runs unfinished ingestion.
+
 ## Product Originality
 
 The functional category is public investor portfolio research, but the design, layout, wording, data model, source plan, and implementation are original to Investor Signal Explorer. Do not copy another product's branding, visual structure, source code, or database.

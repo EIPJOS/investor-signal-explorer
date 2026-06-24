@@ -56,3 +56,9 @@ Add these files when live ingestion begins:
 - `scripts/import-senate-disclosures.ts`
 
 Supabase should sit behind repository functions so the UI does not depend directly on the storage layer.
+
+## Database Target
+
+The initial relational schema is defined in `supabase/schema.sql`. It separates source metadata from normalized records so the product can show filing dates, delays, amendments, and source references instead of presenting imported data as more precise than it really is.
+
+Import placeholders live in `scripts/`. They are intentionally non-networked until source access, rate limits, and Supabase credentials are reviewed.
