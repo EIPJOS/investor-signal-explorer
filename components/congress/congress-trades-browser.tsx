@@ -12,38 +12,54 @@ export function CongressTradesBrowser() {
   const [party, setParty] = useState("All parties");
   const [chamber, setChamber] = useState("All chambers");
   const [type, setType] = useState("Buy/Sell");
+  const [state, setState] = useState("All states");
+  const [assetType, setAssetType] = useState("All assets");
+  const [size, setSize] = useState("All sizes");
+  const states = ["All states", ...Array.from(new Set(congressTrades.map((trade) => trade.state))).sort()];
+  const assetTypes = ["All assets", ...Array.from(new Set(congressTrades.map((trade) => trade.assetType))).sort()];
+  const sizes = ["All sizes", ...Array.from(new Set(congressTrades.map((trade) => trade.valueRange)))];
 
   const rows = useMemo(() => {
     return congressTrades.filter((trade) => {
-      const text = `${trade.politician} ${trade.ticker} ${trade.company}`.toLowerCase();
+      const text = `${trade.politician} ${trade.ticker} ${trade.company} ${trade.committee} ${trade.state}`.toLowerCase();
       return (
         text.includes(query.toLowerCase()) &&
         (party === "All parties" || trade.party === party) &&
         (chamber === "All chambers" || trade.chamber === chamber) &&
-        (type === "Buy/Sell" || trade.type === type)
+        (type === "Buy/Sell" || trade.type === type) &&
+        (state === "All states" || trade.state === state) &&
+        (assetType === "All assets" || trade.assetType === assetType) &&
+        (size === "All sizes" || trade.valueRange === size)
       );
     });
-  }, [query, party, chamber, type]);
+  }, [query, party, chamber, type, state, assetType, size]);
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-3 rounded-md border border-line bg-panel/70 p-4 md:grid-cols-[1fr_repeat(3,180px)]">
+      <div className="grid gap-3 rounded-md border border-line bg-panel/70 p-4 md:grid-cols-2 xl:grid-cols-[1fr_repeat(6,150px)]">
         <SearchInput value={query} onChange={setQuery} placeholder="Politician, ticker, or company" />
         <SelectFilter label="Party" value={party} onChange={setParty} options={["All parties", "Democrat", "Republican", "Independent"]} />
         <SelectFilter label="Chamber" value={chamber} onChange={setChamber} options={["All chambers", "House", "Senate"]} />
         <SelectFilter label="Type" value={type} onChange={setType} options={["Buy/Sell", "Buy", "Sell"]} />
+        <SelectFilter label="State" value={state} onChange={setState} options={states} />
+        <SelectFilter label="Asset" value={assetType} onChange={setAssetType} options={assetTypes} />
+        <SelectFilter label="Size" value={size} onChange={setSize} options={sizes} />
       </div>
       <SortableTable<CongressTrade>
         rows={rows}
         columns={[
           { key: "politician", header: "Politician", accessor: (row) => row.politician },
-          { key: "chamber", header: "Chamber", accessor: (row) => row.chamber },
+          { key: "chamber", header: "Chamber", accessor: (row) => `${row.chamber} ${row.state}` },
+          { key: "committee", header: "Committee", accessor: (row) => row.committee },
           { key: "ticker", header: "Ticker", accessor: (row) => row.ticker },
           { key: "company", header: "Company", accessor: (row) => row.company },
           { key: "type", header: "Type", accessor: (row) => <Badge tone={row.type === "Buy" ? "mint" : "red"}>{row.type}</Badge> },
+          { key: "owner", header: "Owner", accessor: (row) => row.owner },
+          { key: "assetType", header: "Asset", accessor: (row) => row.assetType },
           { key: "transactionDate", header: "Transaction", accessor: (row) => row.transactionDate },
           { key: "disclosureDate", header: "Disclosure", accessor: (row) => row.disclosureDate },
           { key: "valueRange", header: "Value range", accessor: (row) => row.valueRange },
+          { key: "price", header: "Price", accessor: (row) => row.price ?? "N/A", align: "right" },
           {
             key: "daysDelayed",
             header: "Days delayed",

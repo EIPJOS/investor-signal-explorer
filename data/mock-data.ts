@@ -126,19 +126,24 @@ export const holdings: Holding[] = [
 ];
 
 export const congressMembers: CongressMember[] = [
-  { id: "nancy-pelosi", name: "Nancy Pelosi", party: "Democrat", chamber: "House", state: "CA" },
-  { id: "dan-crenshaw", name: "Dan Crenshaw", party: "Republican", chamber: "House", state: "TX" },
-  { id: "markwayne-mullin", name: "Markwayne Mullin", party: "Republican", chamber: "Senate", state: "OK" },
-  { id: "shelley-capito", name: "Shelley Moore Capito", party: "Republican", chamber: "Senate", state: "WV" },
-  { id: "debbie-wasserman-schultz", name: "Debbie Wasserman Schultz", party: "Democrat", chamber: "House", state: "FL" }
+  { id: "nancy-pelosi", name: "Nancy Pelosi", party: "Democrat", chamber: "House", state: "CA", committee: "Former leadership" },
+  { id: "dan-crenshaw", name: "Dan Crenshaw", party: "Republican", chamber: "House", state: "TX", committee: "Energy and Commerce" },
+  { id: "markwayne-mullin", name: "Markwayne Mullin", party: "Republican", chamber: "Senate", state: "OK", committee: "Armed Services" },
+  { id: "shelley-capito", name: "Shelley Moore Capito", party: "Republican", chamber: "Senate", state: "WV", committee: "Appropriations" },
+  { id: "debbie-wasserman-schultz", name: "Debbie Wasserman Schultz", party: "Democrat", chamber: "House", state: "FL", committee: "Appropriations" },
+  { id: "sheldon-whitehouse", name: "Sheldon Whitehouse", party: "Democrat", chamber: "Senate", state: "RI", committee: "Budget" },
+  { id: "virginia-foxx", name: "Virginia Foxx", party: "Republican", chamber: "House", state: "NC", committee: "Education and Workforce" }
 ];
 
 export const congressTrades: CongressTrade[] = [
-  { id: "ct-1", politician: "Nancy Pelosi", chamber: "House", party: "Democrat", ticker: "NVDA", company: "NVIDIA", type: "Buy", transactionDate: "2026-04-12", disclosureDate: "2026-05-25", valueRange: "$500,001-$1,000,000", daysDelayed: 43, mock: true },
-  { id: "ct-2", politician: "Dan Crenshaw", chamber: "House", party: "Republican", ticker: "VST", company: "Vistra", type: "Buy", transactionDate: "2026-04-28", disclosureDate: "2026-05-09", valueRange: "$15,001-$50,000", daysDelayed: 11, mock: true },
-  { id: "ct-3", politician: "Markwayne Mullin", chamber: "Senate", party: "Republican", ticker: "GEV", company: "GE Vernova", type: "Buy", transactionDate: "2026-03-19", disclosureDate: "2026-05-11", valueRange: "$50,001-$100,000", daysDelayed: 53, mock: true },
-  { id: "ct-4", politician: "Shelley Moore Capito", chamber: "Senate", party: "Republican", ticker: "MSFT", company: "Microsoft", type: "Sell", transactionDate: "2026-05-02", disclosureDate: "2026-05-20", valueRange: "$1,001-$15,000", daysDelayed: 18, mock: true },
-  { id: "ct-5", politician: "Debbie Wasserman Schultz", chamber: "House", party: "Democrat", ticker: "CEG", company: "Constellation Energy", type: "Buy", transactionDate: "2026-04-06", disclosureDate: "2026-05-30", valueRange: "$15,001-$50,000", daysDelayed: 54, mock: true }
+  { id: "ct-1", politician: "Nancy Pelosi", chamber: "House", party: "Democrat", state: "CA", committee: "Former leadership", ticker: "NVDA", company: "NVIDIA", type: "Buy", owner: "Spouse", assetType: "Option", transactionDate: "2026-04-12", disclosureDate: "2026-05-25", valueRange: "$500,001-$1,000,000", daysDelayed: 43, price: "$151.60", mock: true },
+  { id: "ct-2", politician: "Dan Crenshaw", chamber: "House", party: "Republican", state: "TX", committee: "Energy and Commerce", ticker: "VST", company: "Vistra", type: "Buy", owner: "Self", assetType: "Stock", transactionDate: "2026-04-28", disclosureDate: "2026-05-09", valueRange: "$15,001-$50,000", daysDelayed: 11, price: "$205.40", mock: true },
+  { id: "ct-3", politician: "Markwayne Mullin", chamber: "Senate", party: "Republican", state: "OK", committee: "Armed Services", ticker: "GEV", company: "GE Vernova", type: "Buy", owner: "Joint", assetType: "Stock", transactionDate: "2026-03-19", disclosureDate: "2026-05-11", valueRange: "$50,001-$100,000", daysDelayed: 53, price: "$515.80", mock: true },
+  { id: "ct-4", politician: "Shelley Moore Capito", chamber: "Senate", party: "Republican", state: "WV", committee: "Appropriations", ticker: "MSFT", company: "Microsoft", type: "Sell", owner: "Undisclosed", assetType: "Stock", transactionDate: "2026-05-02", disclosureDate: "2026-05-20", valueRange: "$1,001-$15,000", daysDelayed: 18, price: "$492.25", mock: true },
+  { id: "ct-5", politician: "Debbie Wasserman Schultz", chamber: "House", party: "Democrat", state: "FL", committee: "Appropriations", ticker: "CEG", company: "Constellation Energy", type: "Buy", owner: "Self", assetType: "Stock", transactionDate: "2026-04-06", disclosureDate: "2026-05-30", valueRange: "$15,001-$50,000", daysDelayed: 54, price: "$318.10", mock: true },
+  { id: "ct-6", politician: "Sheldon Whitehouse", chamber: "Senate", party: "Democrat", state: "RI", committee: "Budget", ticker: "NVDA", company: "NVIDIA", type: "Sell", owner: "Self", assetType: "Stock", transactionDate: "2026-05-08", disclosureDate: "2026-06-02", valueRange: "$100,001-$250,000", daysDelayed: 25, price: "$151.60", mock: true },
+  { id: "ct-7", politician: "Virginia Foxx", chamber: "House", party: "Republican", state: "NC", committee: "Education and Workforce", ticker: "GEV", company: "GE Vernova", type: "Buy", owner: "Undisclosed", assetType: "Stock", transactionDate: "2026-05-15", disclosureDate: "2026-06-02", valueRange: "$15,001-$50,000", daysDelayed: 18, price: "$515.80", mock: true },
+  { id: "ct-8", politician: "Nancy Pelosi", chamber: "House", party: "Democrat", state: "CA", committee: "Former leadership", ticker: "MSFT", company: "Microsoft", type: "Buy", owner: "Spouse", assetType: "Option", transactionDate: "2026-04-17", disclosureDate: "2026-05-28", valueRange: "$250,001-$500,000", daysDelayed: 41, price: "$492.25", mock: true }
 ];
 
 export const insiders: Insider[] = [

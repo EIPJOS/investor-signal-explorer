@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CongressIntelligence } from "@/components/congress/congress-intelligence";
 import { CongressTradesBrowser } from "@/components/congress/congress-trades-browser";
 import { Badge } from "@/components/ui/badge";
 
@@ -14,9 +15,10 @@ export default function CongressPage() {
         <Badge tone="amber">Mock data clearly labeled</Badge>
         <h1 className="mt-3 text-3xl font-semibold text-white">Congress Trades</h1>
         <p className="mt-3 max-w-3xl text-slate-300">
-          Explore sample congressional stock disclosures with delay highlighting. This first version does not scrape House or Senate records.
+          Explore sample congressional stock disclosures with delay highlighting, owner context, issuer activity, and policymaker-level summaries. This first version does not scrape House or Senate records.
         </p>
       </div>
+      <CongressIntelligence />
       <CongressTradesBrowser />
     </main>
   );

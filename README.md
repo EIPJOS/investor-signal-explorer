@@ -93,6 +93,17 @@ The functional category is public investor portfolio research, but the design, l
 
 The data methodology is documented in `docs/data-methodology.md`.
 
+## Congressional Intelligence Direction
+
+The Congress section now includes original mock-data views for:
+
+- aggregate trade, politician, issuer, volume, and late-filing metrics
+- politician activity cards
+- issuer activity cards
+- advanced filtering by party, chamber, state, transaction type, asset type, trade size, ticker, politician, company, and committee
+
+These features are intended to support public disclosure research while keeping the design and implementation original.
+
 ## Disclaimer
 
 This website is for educational and research purposes only. It is not investment advice. Public filings may be delayed, incomplete, or amended.

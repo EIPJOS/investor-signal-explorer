@@ -2,6 +2,12 @@
 
 Investor Signal Explorer is designed as an original research product inspired by the general idea of public portfolio tracking, not by any specific site's design, layout, wording, code, or database.
 
+## Reference Boundaries
+
+Reference products in this category show useful user needs: recent trade feeds, politician profiles, issuer activity, disclosure delays, trade size ranges, and filtering by party, chamber, state, transaction type, sector, and issuer. Investor Signal Explorer may support those research needs, but it should express them through its own navigation, visual system, data model, copy, and interaction design.
+
+Do not reproduce another site's page composition, card styling, table presentation, branding, naming, copy, or proprietary data structure.
+
 ## Source Strategy
 
 The product should rely on public records where possible:
@@ -40,6 +46,13 @@ Initial signals should be explainable and rule-based:
 - Congress purchase with late disclosure.
 - Insider cluster buying.
 - Filing-related news overlap.
+
+Congress-specific signals can additionally use:
+
+- Late disclosure.
+- Repeated purchases by the same policymaker.
+- Multiple politicians trading the same issuer.
+- Committee-relevant issuer activity.
 
 ## Phase 2 Implementation
 

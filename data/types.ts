@@ -59,6 +59,7 @@ export interface CongressMember {
   party: "Democrat" | "Republican" | "Independent";
   chamber: "House" | "Senate";
   state: string;
+  committee?: string;
 }
 
 export interface CongressTrade {
@@ -66,13 +67,18 @@ export interface CongressTrade {
   politician: string;
   chamber: "House" | "Senate";
   party: "Democrat" | "Republican" | "Independent";
+  state: string;
+  committee: string;
   ticker: string;
   company: string;
   type: TransactionType;
+  owner: "Self" | "Spouse" | "Joint" | "Undisclosed";
+  assetType: "Stock" | "ETF" | "Option" | "Bond" | "Other";
   transactionDate: string;
   disclosureDate: string;
   valueRange: string;
   daysDelayed: number;
+  price?: string;
   mock: boolean;
 }
 
