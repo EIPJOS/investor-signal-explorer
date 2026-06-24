@@ -43,7 +43,7 @@ export function CongressIntelligence() {
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 className="font-semibold text-white">{member.name}</h3>
-                    <p className="text-sm text-slate-400">{member.party} · {member.chamber} · {member.state}</p>
+                    <p className="text-sm text-slate-400">{member.party} - {member.chamber} - {member.state}</p>
                   </div>
                   <Badge tone={member.party === "Democrat" ? "blue" : "red"}>{member.trades} trades</Badge>
                 </div>
@@ -64,7 +64,7 @@ export function CongressIntelligence() {
               <Link key={issuer.ticker} href={`/congress/issuers/${issuer.ticker}`} className="flex items-center justify-between rounded-md bg-ink/55 p-3 transition hover:bg-panelSoft">
                 <div>
                   <p className="font-semibold text-white">{issuer.company}</p>
-                  <p className="text-sm text-slate-400">{issuer.ticker} · {issuer.sector}</p>
+                  <p className="text-sm text-slate-400">{issuer.ticker} - {issuer.sector}</p>
                 </div>
                 <div className="text-right text-sm">
                   <p className="text-slate-200">{issuer.trades} trades</p>

@@ -75,9 +75,9 @@ export default function HomePage() {
       <section className="grid gap-6 2xl:grid-cols-[1fr_11rem]">
         <PortfolioUpdateTape />
         <div className="hidden space-y-4 2xl:block">
-          <AdSlot label="Future ad slot — disabled" />
-          <AdSlot label="Future sponsor slot — disabled" />
-          <AdSlot label="Future research promo — disabled" />
+          <AdSlot label="Future ad slot - disabled" />
+          <AdSlot label="Future sponsor slot - disabled" />
+          <AdSlot label="Future research promo - disabled" />
         </div>
       </section>
 

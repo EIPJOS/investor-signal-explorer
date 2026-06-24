@@ -21,7 +21,7 @@ export function PortfolioUpdateTape() {
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                     <p className="truncate text-sm font-medium text-white">
-                      {update.investorName} <span className="font-normal text-slate-500">· {update.firm}</span>
+                      {update.investorName} <span className="font-normal text-slate-500">- {update.firm}</span>
                     </p>
                     <span className="shrink-0 text-xs text-slate-400">{formatDate(update.updatedAt)}</span>
                   </div>
@@ -57,7 +57,7 @@ export function PortfolioUpdateTape() {
               <div className="space-y-2">
                 {ownershipStats.mostOwned.map((stock, index) => (
                   <Link key={stock.ticker} href={`/stocks/${stock.ticker}`} className="flex items-center justify-between rounded-md bg-ink/55 px-3 py-2 text-sm hover:bg-panelSoft">
-                    <span className="text-slate-300">{index + 1}. <span className="font-medium text-white">{stock.ticker}</span> · {stock.company}</span>
+                    <span className="text-slate-300">{index + 1}. <span className="font-medium text-white">{stock.ticker}</span> - {stock.company}</span>
                     <span className="text-slate-500">{stock.count}</span>
                   </Link>
                 ))}

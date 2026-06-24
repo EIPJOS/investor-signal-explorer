@@ -33,7 +33,7 @@ export default async function TradeDetailPage({ params }: { params: Promise<{ id
             <Badge tone={trade.type === "Buy" ? "mint" : "red"}>{trade.type}</Badge>
             <h1 className="mt-4 text-3xl font-semibold text-white">{trade.politician} disclosed {trade.ticker}</h1>
             <p className="mt-3 text-slate-300">
-              {trade.company} · {trade.assetType} · {trade.owner} owner label · {trade.valueRange}
+              {trade.company} - {trade.assetType} - {trade.owner} owner label - {trade.valueRange}
             </p>
           </div>
           <div className="flex flex-wrap gap-2">

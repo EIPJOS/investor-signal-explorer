@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { congressMembers, investors, stocks } from "@/data/mock-data";
+import { slugify } from "@/data/congress-analytics";
 
 export function GlobalSearch() {
   const [query, setQuery] = useState("");
@@ -13,7 +14,7 @@ export function GlobalSearch() {
     return [
       ...stocks.map((stock) => ({ label: `${stock.ticker} - ${stock.company}`, href: `/stocks/${stock.ticker}`, type: "Stock" })),
       ...investors.map((investor) => ({ label: `${investor.name} - ${investor.firm}`, href: `/investors/${investor.slug}`, type: "Investor" })),
-      ...congressMembers.map((member) => ({ label: `${member.name} - ${member.chamber}`, href: `/congress?politician=${encodeURIComponent(member.name)}`, type: "Policymaker" }))
+      ...congressMembers.map((member) => ({ label: `${member.name} - ${member.chamber}`, href: `/congress/politicians/${slugify(member.name)}`, type: "Policymaker" }))
     ]
       .filter((item) => item.label.toLowerCase().includes(normalized))
       .slice(0, 6);
