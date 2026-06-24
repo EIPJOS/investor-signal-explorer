@@ -6,6 +6,7 @@ import { MockWarning } from "@/components/ui/mock-warning";
 import { holdingStatusTone } from "@/components/ui/status-tone";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { formatCurrency, investors } from "@/data/mock-data";
+import { estimateTradeValue, slugify } from "@/data/congress-analytics";
 import type { CongressTrade, Holding, InsiderTrade } from "@/data/types";
 
 export function StockOwnershipTable({ rows }: { rows: Holding[] }) {
@@ -43,10 +44,29 @@ export function StockCongressTable({ rows }: { rows: CongressTrade[] }) {
         emptyTitle="No Congress trades"
         emptyText="No mock Congress disclosures are attached to this ticker."
         columns={[
-          { key: "politician", header: "Politician", accessor: (row) => row.politician },
+          {
+            key: "politician",
+            header: "Politician",
+            accessor: (row) => (
+              <Link className="text-mint" href={`/congress/politicians/${slugify(row.politician)}`}>
+                {row.politician}
+              </Link>
+            )
+          },
           { key: "type", header: "Type", accessor: (row) => <Badge tone={row.type === "Buy" ? "mint" : "red"}>{row.type}</Badge> },
+          { key: "owner", header: "Owner", accessor: (row) => row.owner },
+          { key: "valueRange", header: "Est. value", accessor: (row) => row.valueRange, sortValue: (row) => estimateTradeValue(row.valueRange), align: "right" },
           { key: "transactionDate", header: "Transaction", accessor: (row) => row.transactionDate },
-          { key: "daysDelayed", header: "Delay", accessor: (row) => row.daysDelayed, sortValue: (row) => row.daysDelayed, align: "right" }
+          { key: "daysDelayed", header: "Delay", accessor: (row) => `${row.daysDelayed} days`, sortValue: (row) => row.daysDelayed, align: "right" },
+          {
+            key: "id",
+            header: "Detail",
+            accessor: (row) => (
+              <Link className="text-slate-300 hover:text-white" href={`/congress/trades/${row.id}`}>
+                Open
+              </Link>
+            )
+          }
         ]}
       />
     </div>

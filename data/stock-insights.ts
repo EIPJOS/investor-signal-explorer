@@ -1,4 +1,4 @@
-import { congressTrades, getStock, holdings, insiderTrades, newsItems, signals, stocks } from "@/data/mock-data";
+import { congressTrades, getStock, holdings, insiderTrades, investors, newsItems, signals, stocks } from "@/data/mock-data";
 
 export function getRelatedStocks(ticker: string) {
   const stock = getStock(ticker);
@@ -25,7 +25,9 @@ export function getTickerResearchQuestions(ticker: string) {
   const congressCount = congressTrades.filter((trade) => trade.ticker === ticker).length;
   const insiderCount = insiderTrades.filter((trade) => trade.ticker === ticker).length;
   const newsCount = newsItems.filter((news) => news.ticker === ticker).length;
-  const ownerNames = holders.map((holding) => holding.investorSlug).join(", ");
+  const ownerNames = holders
+    .map((holding) => investors.find((investor) => investor.slug === holding.investorSlug)?.name ?? holding.investorSlug)
+    .join(", ");
 
   if (!stock) return [];
 

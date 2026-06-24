@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
@@ -7,6 +8,7 @@ import { StockCongressTable, StockInsiderTable, StockOwnershipTable } from "@/co
 import { getRelatedStocks, getTickerResearchQuestions } from "@/data/stock-insights";
 import {
   congressTrades,
+  filings,
   getStock,
   getStockHolders,
   getStockSignals,
@@ -14,6 +16,10 @@ import {
   newsItems,
   stocks
 } from "@/data/mock-data";
+
+function latestDate(values: string[], fallback: string) {
+  return values.filter(Boolean).sort((a, b) => b.localeCompare(a))[0] ?? fallback;
+}
 
 export function generateStaticParams() {
   return stocks.map((stock) => ({ ticker: stock.ticker }));
@@ -41,8 +47,9 @@ export default async function StockDetailPage({ params }: { params: Promise<{ ti
   const researchQuestions = getTickerResearchQuestions(stock.ticker);
   const tabs = ["Overview", "Hedge Fund Ownership", "Congress Trades", "Insider Trades", "Signals", "News"];
   const lastSignal = stockSignals[0];
-  const latestHolderDate = "2026-05-15";
-  const latestReportDate = "2026-03-31";
+  const holderFilings = filings.filter((filing) => holders.some((holding) => holding.investorSlug === filing.investorSlug));
+  const latestHolderDate = latestDate(holderFilings.map((filing) => filing.filedAt), "No tracked filing");
+  const latestReportDate = latestDate(holderFilings.map((filing) => filing.reportDate), "No tracked report");
   const lastUpdated = "2026-06-24";
 
   return (
@@ -141,7 +148,7 @@ export default async function StockDetailPage({ params }: { params: Promise<{ ti
           <SectionHeader title="Related Stocks" eyebrow="Continue research" />
           <div className="grid gap-3 sm:grid-cols-2">
             {relatedStocks.map((related) => (
-              <a key={related.ticker} href={`/stocks/${related.ticker}`} className="rounded-md border border-line bg-ink/55 p-3 transition hover:border-mint/60">
+              <Link key={related.ticker} href={`/stocks/${related.ticker}`} className="rounded-md border border-line bg-ink/55 p-3 transition hover:border-mint/60">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-semibold text-white">{related.ticker}</p>
@@ -149,8 +156,9 @@ export default async function StockDetailPage({ params }: { params: Promise<{ ti
                   </div>
                   <Badge tone="blue">{related.sector}</Badge>
                 </div>
-              </a>
+              </Link>
             ))}
+            {relatedStocks.length === 0 ? <p className="text-sm text-slate-400">No related mock stocks are attached to this ticker yet.</p> : null}
           </div>
         </Card>
         <Card>
