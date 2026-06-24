@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { holdingStatusTone } from "@/components/ui/status-tone";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { formatCurrency, investors } from "@/data/mock-data";
 import type { CongressTrade, Holding, InsiderTrade } from "@/data/types";
@@ -23,7 +24,7 @@ export function StockOwnershipTable({ rows }: { rows: Holding[] }) {
         { key: "shares", header: "Shares", accessor: (row) => row.shares.toLocaleString(), sortValue: (row) => row.shares, align: "right" },
         { key: "marketValue", header: "Market value", accessor: (row) => formatCurrency(row.marketValue), sortValue: (row) => row.marketValue, align: "right" },
         { key: "weight", header: "Weight", accessor: (row) => `${row.weight}%`, sortValue: (row) => row.weight, align: "right" },
-        { key: "status", header: "Status", accessor: (row) => <Badge tone={row.status === "New" ? "mint" : row.status === "Sold" ? "red" : "amber"}>{row.status}</Badge> }
+        { key: "status", header: "Status", accessor: (row) => <Badge tone={holdingStatusTone(row.status)}>{row.status}</Badge> }
       ]}
     />
   );

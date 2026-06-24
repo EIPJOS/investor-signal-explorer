@@ -5,6 +5,7 @@ import { HoldingsTable } from "@/components/investors/holdings-table";
 import { SignalCard } from "@/components/signals/signal-card";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
+import { holdingStatusTone } from "@/components/ui/status-tone";
 import { filings, formatCurrency, getHoldingsByInvestor, getInvestor, signals } from "@/data/mock-data";
 
 export function generateStaticParams() {
@@ -67,7 +68,7 @@ export default async function InvestorDetailPage({ params }: { params: Promise<{
             {investorHoldings.map((holding) => (
               <div key={holding.ticker} className="flex items-center justify-between rounded-md bg-ink/60 p-3 text-sm">
                 <span className="text-slate-200">{holding.ticker} {holding.status.toLowerCase()}</span>
-                <Badge tone={holding.qoqChange >= 0 ? "mint" : "red"}>{holding.qoqChange}%</Badge>
+                <Badge tone={holdingStatusTone(holding.status)}>{holding.qoqChange}%</Badge>
               </div>
             ))}
           </div>

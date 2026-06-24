@@ -48,7 +48,9 @@ export function SectorAllocationChart({ holdings }: { holdings: Holding[] }) {
           </Pie>
           <Tooltip
             formatter={(value) => `${value}%`}
-            contentStyle={{ background: "#0b1829", border: "1px solid #23364f", borderRadius: 6, color: "#e6edf7" }}
+            contentStyle={{ background: "#0b1829", border: "1px solid #45d19b55", borderRadius: 6, color: "#e6edf7" }}
+            itemStyle={{ color: "#e6edf7" }}
+            labelStyle={{ color: "#9ff3cc", fontWeight: 600 }}
           />
         </PieChart>
       </ResponsiveContainer>
