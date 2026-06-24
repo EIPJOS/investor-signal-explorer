@@ -33,7 +33,7 @@ const berkshireHistory: PortfolioHistorySnapshot[] = [
 ];
 
 function fallbackActivities(slug: string): PortfolioActivity[] {
-  return getHoldingsByInvestor(slug).map((holding, index) => ({
+  return getHoldingsByInvestor(slug).map((holding) => ({
     id: `${slug}-activity-${holding.ticker}`,
     investorSlug: slug,
     period: "Latest filing",

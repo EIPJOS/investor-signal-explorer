@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { MockWarning } from "@/components/ui/mock-warning";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { holdingStatusTone } from "@/components/ui/status-tone";
-import { formatCurrency } from "@/data/mock-data";
+import { formatCurrency, stocks } from "@/data/mock-data";
 import type { Holding, PortfolioActivity, PortfolioHistorySnapshot } from "@/data/types";
 
 type Tab = "Holdings" | "Activity" | "Buys" | "Sells" | "History";
@@ -22,6 +23,12 @@ function activityTone(activity: PortfolioActivity["activity"]) {
 function signedNumber(value: number) {
   const sign = value > 0 ? "+" : "";
   return `${sign}${value.toLocaleString()}`;
+}
+
+function TickerLink({ ticker }: { ticker: string }) {
+  const hasStockPage = stocks.some((stock) => stock.ticker === ticker);
+  if (!hasStockPage) return <span>{ticker}</span>;
+  return <Link className="text-mint hover:text-emerald-200" href={`/stocks/${ticker}`}>{ticker}</Link>;
 }
 
 export function InvestorPortfolioWorkspace({
@@ -81,7 +88,7 @@ function HoldingsMode({ rows }: { rows: Holding[] }) {
     <SortableTable<Holding>
       rows={rows}
       columns={[
-        { key: "ticker", header: "Ticker", accessor: (row) => row.ticker },
+        { key: "ticker", header: "Ticker", accessor: (row) => <TickerLink ticker={row.ticker} /> },
         { key: "company", header: "Company", accessor: (row) => row.company },
         { key: "shares", header: "Shares", accessor: (row) => row.shares.toLocaleString(), sortValue: (row) => row.shares, align: "right" },
         { key: "marketValue", header: "Market value", accessor: (row) => formatCurrency(row.marketValue), sortValue: (row) => row.marketValue, align: "right" },
@@ -101,7 +108,7 @@ function ActivityMode({ rows, emptyLabel }: { rows: PortfolioActivity[]; emptyLa
       emptyText="This mock filing period does not include matching activity rows."
       columns={[
         { key: "period", header: "Period", accessor: (row) => row.period },
-        { key: "ticker", header: "Ticker", accessor: (row) => row.ticker },
+        { key: "ticker", header: "Ticker", accessor: (row) => <TickerLink ticker={row.ticker} /> },
         { key: "company", header: "Company", accessor: (row) => row.company },
         {
           key: "activity",
@@ -148,7 +155,7 @@ function HistoryMode({ rows }: { rows: PortfolioHistorySnapshot[] }) {
                 <div className="flex min-w-[48rem] flex-wrap gap-2">
                   {row.topHoldings.map((ticker, index) => (
                     <span key={`${row.id}-${ticker}-${index}`} className="rounded-md bg-ink/70 px-2 py-1 text-xs font-medium text-sky-200">
-                      {ticker}
+                      <TickerLink ticker={ticker} />
                     </span>
                   ))}
                 </div>

@@ -5,6 +5,8 @@ import { InvestorPortfolioWorkspace } from "@/components/investors/investor-port
 import { SignalCard } from "@/components/signals/signal-card";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
+import { MockWarning } from "@/components/ui/mock-warning";
 import { holdingStatusTone } from "@/components/ui/status-tone";
 import { getInvestorActivities, getInvestorHistory } from "@/data/investor-activity";
 import { filings, formatCurrency, getHoldingsByInvestor, getInvestor, signals } from "@/data/mock-data";
@@ -43,8 +45,8 @@ export default async function InvestorDetailPage({ params }: { params: Promise<{
           </div>
           <div className="rounded-md border border-line bg-ink/60 p-4 text-sm text-slate-300">
             <p className="font-medium text-white">Source metadata</p>
-            <p className="mt-2">CIK: <span className="font-mono text-slate-100">{filing?.cik}</span></p>
-            <p className="mt-1">Accession: <span className="font-mono text-slate-100">{filing?.accessionNumber}</span></p>
+            <p className="mt-2">CIK placeholder: <span className="font-mono text-slate-100">{filing?.cik}</span></p>
+            <p className="mt-1">Accession placeholder: <span className="font-mono text-slate-100">{filing?.accessionNumber}</span></p>
             <p className="mt-1">Report period: {filing?.period}</p>
             <p className="mt-1">Report date: {filing?.reportDate}</p>
             <p className="mt-1">Filing date: {filing?.filedAt}</p>
@@ -55,9 +57,12 @@ export default async function InvestorDetailPage({ params }: { params: Promise<{
         </div>
       </Card>
 
-      <section className="grid gap-4 md:grid-cols-3">
+      <MockWarning />
+
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Card><p className="text-sm text-slate-400">Portfolio value</p><p className="mt-2 text-2xl font-semibold text-white">{formatCurrency(investor.portfolioValue)}</p></Card>
-        <Card><p className="text-sm text-slate-400">Holdings</p><p className="mt-2 text-2xl font-semibold text-white">{investor.holdingsCount}</p></Card>
+        <Card><p className="text-sm text-slate-400">Reported holdings</p><p className="mt-2 text-2xl font-semibold text-white">{investor.holdingsCount}</p></Card>
+        <Card><p className="text-sm text-slate-400">Displayed sample</p><p className="mt-2 text-2xl font-semibold text-white">{investorHoldings.length}</p></Card>
         <Card><p className="text-sm text-slate-400">Top holding</p><p className="mt-2 text-2xl font-semibold text-white">{investor.topHolding}</p></Card>
       </section>
 
@@ -83,7 +88,11 @@ export default async function InvestorDetailPage({ params }: { params: Promise<{
         <Card>
           <SectionHeader title="Related Signals" eyebrow="Cross-source overlap" />
           <div className="space-y-3">
-            {relatedSignals.map((signal) => <SignalCard key={signal.id} signal={signal} />)}
+            {relatedSignals.length > 0 ? (
+              relatedSignals.map((signal) => <SignalCard key={signal.id} signal={signal} />)
+            ) : (
+              <EmptyState title="No related signals" text="No mock cross-source signals are currently tied to this displayed sample." />
+            )}
           </div>
         </Card>
       </section>

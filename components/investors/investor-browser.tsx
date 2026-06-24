@@ -49,7 +49,7 @@ export function InvestorBrowser() {
                     <dd className="font-medium text-slate-100">{formatCurrency(investor.portfolioValue)}</dd>
                   </div>
                   <div>
-                    <dt className="text-slate-500">Holdings</dt>
+                    <dt className="text-slate-500">Reported holdings</dt>
                     <dd className="font-medium text-slate-100">{investor.holdingsCount}</dd>
                   </div>
                   <div>
