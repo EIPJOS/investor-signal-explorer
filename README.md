@@ -111,6 +111,10 @@ These features are intended to support public disclosure research while keeping 
 
 The home dashboard includes a dense portfolio update tape with updated dates, change counts, top tickers, and compact ownership stat panels. The layout also includes reserved sponsor slots for future monetization once traffic is stable.
 
+## Data Accuracy Notes
+
+The visible famous-investor mock holdings were corrected against public 13F summaries on June 24, 2026. Dataroma was used only as a manual checking reference where available. Live production data should come from SEC EDGAR and normalized records in our own database.
+
 ## Disclaimer
 
 This website is for educational and research purposes only. It is not investment advice. Public filings may be delayed, incomplete, or amended.

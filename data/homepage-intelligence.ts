@@ -35,22 +35,22 @@ export const ownershipStats = {
   mostOwned: [
     { ticker: "GOOGL", company: "Alphabet", count: 34 },
     { ticker: "MSFT", company: "Microsoft", count: 31 },
-    { ticker: "NVDA", company: "NVIDIA", count: 28 },
+    { ticker: "GOOG", company: "Alphabet Class C", count: 30 },
     { ticker: "AMZN", company: "Amazon", count: 26 },
     { ticker: "META", company: "Meta Platforms", count: 24 },
-    { ticker: "AAPL", company: "Apple", count: 23 },
+    { ticker: "V", company: "Visa", count: 23 },
     { ticker: "BRK.B", company: "Berkshire Hathaway", count: 21 },
-    { ticker: "VST", company: "Vistra", count: 17 },
-    { ticker: "CEG", company: "Constellation Energy", count: 15 },
-    { ticker: "GEV", company: "GE Vernova", count: 13 }
+    { ticker: "TSM", company: "Taiwan Semiconductor", count: 20 },
+    { ticker: "AAPL", company: "Apple", count: 19 },
+    { ticker: "DIS", company: "Walt Disney", count: 18 }
   ],
   highConviction: [
-    { ticker: "VST", company: "Vistra", maxWeight: 27.9, owners: 2 },
-    { ticker: "NVDA", company: "NVIDIA", maxWeight: 28.1, owners: 2 },
-    { ticker: "CEG", company: "Constellation Energy", maxWeight: 12.8, owners: 2 },
-    { ticker: "GOOGL", company: "Alphabet", maxWeight: 16.6, owners: 1 },
-    { ticker: "MSFT", company: "Microsoft", maxWeight: 9.9, owners: 3 },
-    { ticker: "GEV", company: "GE Vernova", maxWeight: 8.9, owners: 3 },
-    { ticker: "AAPL", company: "Apple", maxWeight: 19.3, owners: 2 }
+    { ticker: "CVNA", company: "Carvana", maxWeight: 81.67, owners: 7 },
+    { ticker: "GPI", company: "Group 1 Automotive", maxWeight: 47.66, owners: 2 },
+    { ticker: "MOH", company: "Molina Healthcare", maxWeight: 43.49, owners: 4 },
+    { ticker: "HCC", company: "Warrior Met Coal", maxWeight: 39.89, owners: 2 },
+    { ticker: "BRK.A", company: "Berkshire Hathaway Class A", maxWeight: 38.47, owners: 16 },
+    { ticker: "AMZN", company: "Amazon", maxWeight: 38.2, owners: 34 },
+    { ticker: "AAPL", company: "Apple", maxWeight: 36.72, owners: 23 }
   ]
 };

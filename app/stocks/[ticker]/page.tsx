@@ -11,10 +11,11 @@ import {
   getStockSignals,
   insiderTrades,
   newsItems,
+  stocks
 } from "@/data/mock-data";
 
 export function generateStaticParams() {
-  return ["VST", "CEG", "NVDA", "MSFT", "GEV"].map((ticker) => ({ ticker }));
+  return stocks.map((stock) => ({ ticker: stock.ticker }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ ticker: string }> }): Promise<Metadata> {

@@ -8,6 +8,8 @@ Reference products in this category show useful user needs: recent trade feeds, 
 
 Do not reproduce another site's page composition, card styling, table presentation, branding, naming, copy, or proprietary data structure.
 
+For current mock rows, Dataroma may be used only as a manual cross-check for public 13F summaries. Production data should come from public filings, SEC EDGAR, congressional disclosure sources, or a storage layer we control.
+
 ## Source Strategy
 
 The product should rely on public records where possible:
