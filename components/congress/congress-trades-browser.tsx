@@ -1,10 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { SearchInput, SelectFilter } from "@/components/ui/filter-controls";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { congressTrades } from "@/data/mock-data";
+import { slugify } from "@/data/congress-analytics";
 import type { CongressTrade } from "@/data/types";
 
 export function CongressTradesBrowser() {
@@ -48,10 +50,26 @@ export function CongressTradesBrowser() {
       <SortableTable<CongressTrade>
         rows={rows}
         columns={[
-          { key: "politician", header: "Politician", accessor: (row) => row.politician },
+          {
+            key: "politician",
+            header: "Politician",
+            accessor: (row) => (
+              <Link className="text-mint" href={`/congress/politicians/${slugify(row.politician)}`}>
+                {row.politician}
+              </Link>
+            )
+          },
           { key: "chamber", header: "Chamber", accessor: (row) => `${row.chamber} ${row.state}` },
           { key: "committee", header: "Committee", accessor: (row) => row.committee },
-          { key: "ticker", header: "Ticker", accessor: (row) => row.ticker },
+          {
+            key: "ticker",
+            header: "Ticker",
+            accessor: (row) => (
+              <Link className="text-mint" href={`/congress/issuers/${row.ticker}`}>
+                {row.ticker}
+              </Link>
+            )
+          },
           { key: "company", header: "Company", accessor: (row) => row.company },
           { key: "type", header: "Type", accessor: (row) => <Badge tone={row.type === "Buy" ? "mint" : "red"}>{row.type}</Badge> },
           { key: "owner", header: "Owner", accessor: (row) => row.owner },
@@ -66,6 +84,15 @@ export function CongressTradesBrowser() {
             accessor: (row) => <Badge tone={row.daysDelayed > 45 ? "red" : row.daysDelayed > 30 ? "amber" : "slate"}>{row.daysDelayed}</Badge>,
             sortValue: (row) => row.daysDelayed,
             align: "right"
+          },
+          {
+            key: "detail",
+            header: "Detail",
+            accessor: (row) => (
+              <Link className="text-slate-300 hover:text-white" href={`/congress/trades/${row.id}`}>
+                Open
+              </Link>
+            )
           }
         ]}
       />

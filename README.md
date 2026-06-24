@@ -48,6 +48,9 @@ This keeps route components independent from storage details and prepares the ap
 - `/investors` famous investor browser
 - `/investors/[slug]` investor detail pages
 - `/congress` congressional trade table
+- `/congress/politicians/[slug]` congressional politician activity profile
+- `/congress/issuers/[ticker]` congressional issuer activity profile
+- `/congress/trades/[id]` congressional trade disclosure detail
 - `/insiders` insider trade table and cluster sections
 - `/stocks/[ticker]` stock ownership pages for `VST`, `CEG`, `NVDA`, `MSFT`, and `GEV`
 - `/signals` grouped signal browser

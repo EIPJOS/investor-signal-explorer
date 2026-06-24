@@ -39,7 +39,7 @@ export function CongressIntelligence() {
           <SectionHeader title="Politician Activity" eyebrow="Mock disclosure leaderboard" />
           <div className="grid gap-3 md:grid-cols-2">
             {politicians.map((member) => (
-              <article key={member.id} className="rounded-md border border-line bg-ink/55 p-4">
+              <Link key={member.id} href={`/congress/politicians/${member.slug}`} className="rounded-md border border-line bg-ink/55 p-4 transition hover:border-mint/60">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 className="font-semibold text-white">{member.name}</h3>
@@ -52,7 +52,7 @@ export function CongressIntelligence() {
                   <div><dt className="text-slate-500">Volume</dt><dd className="text-slate-200">{formatCurrency(member.volume)}</dd></div>
                   <div><dt className="text-slate-500">Last</dt><dd className="text-slate-200">{member.lastTraded}</dd></div>
                 </dl>
-              </article>
+              </Link>
             ))}
           </div>
         </Card>
@@ -61,7 +61,7 @@ export function CongressIntelligence() {
           <SectionHeader title="Issuer Activity" eyebrow="Most traded mock tickers" />
           <div className="space-y-3">
             {issuers.map((issuer) => (
-              <Link key={issuer.ticker} href={`/stocks/${issuer.ticker}`} className="flex items-center justify-between rounded-md bg-ink/55 p-3 transition hover:bg-panelSoft">
+              <Link key={issuer.ticker} href={`/congress/issuers/${issuer.ticker}`} className="flex items-center justify-between rounded-md bg-ink/55 p-3 transition hover:bg-panelSoft">
                 <div>
                   <p className="font-semibold text-white">{issuer.company}</p>
                   <p className="text-sm text-slate-400">{issuer.ticker} · {issuer.sector}</p>
