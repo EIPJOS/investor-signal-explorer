@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { InsiderTradesBrowser } from "@/components/insiders/insider-trades-browser";
+import { MockWarning } from "@/components/ui/mock-warning";
 
 export const metadata: Metadata = {
   title: "Insider Trades",
@@ -16,6 +17,7 @@ export default function InsidersPage() {
           Filter executive transactions and inspect mock cluster buying patterns designed for future SEC Form 4 imports.
         </p>
       </div>
+      <MockWarning />
       <InsiderTradesBrowser />
     </main>
   );
