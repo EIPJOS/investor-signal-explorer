@@ -37,6 +37,8 @@ All mock data lives in `data/`.
 
 - `data/types.ts` defines the future-facing domain interfaces: `Investor`, `Fund`, `Filing`, `Holding`, `Stock`, `CongressMember`, `CongressTrade`, `Insider`, `InsiderTrade`, `Signal`, and `NewsItem`.
 - `data/mock-data.ts` exports local records and query helpers such as `getInvestor`, `getStock`, `getStockHolders`, and `getStockSignals`.
+- `data/repositories/investor-repository.ts` is the first repository facade. Supabase-backed functions should replace these mock exports without changing the page layer.
+- `lib/data-sources/source-registry.ts` describes the public-source plan, normalized entities, cadence, and Phase 2 adapter paths.
 
 This keeps route components independent from storage details and prepares the app for a Supabase adapter later.
 
@@ -69,6 +71,12 @@ SEC and disclosure imports should be added in:
 - `app/api/imports/*` only if protected on-demand import endpoints are needed
 
 Do not implement real scraping until source terms, rate limits, normalization rules, and storage schema are finalized.
+
+## Product Originality
+
+The functional category is public investor portfolio research, but the design, layout, wording, data model, source plan, and implementation are original to Investor Signal Explorer. Do not copy another product's branding, visual structure, source code, or database.
+
+The data methodology is documented in `docs/data-methodology.md`.
 
 ## Disclaimer
 

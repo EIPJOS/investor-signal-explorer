@@ -13,6 +13,7 @@ import {
   Newspaper,
   Search,
   ShieldCheck,
+  Database,
   UserRoundCheck,
   X
 } from "lucide-react";
@@ -26,6 +27,7 @@ const navigation = [
   { href: "/insiders", label: "Insider Trades", icon: UserRoundCheck },
   { href: "/stocks/VST", label: "Stocks", icon: CandlestickChart },
   { href: "/signals", label: "Signals", icon: BarChart3 },
+  { href: "/data-sources", label: "Data Sources", icon: Database },
   { href: "/about", label: "About", icon: BadgeInfo }
 ];
 

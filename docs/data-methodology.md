@@ -1,0 +1,58 @@
+# Data Methodology
+
+Investor Signal Explorer is designed as an original research product inspired by the general idea of public portfolio tracking, not by any specific site's design, layout, wording, code, or database.
+
+## Source Strategy
+
+The product should rely on public records where possible:
+
+- SEC Form 13F filings for quarterly institutional holdings.
+- SEC EDGAR filing metadata for accession numbers, filing dates, form types, and document discovery.
+- SEC Form 4 filings for insider transactions.
+- House financial disclosures for representative transaction reports.
+- Senate financial disclosures for senator transaction reports.
+
+## Normalization Rules
+
+Raw records should be preserved before normalization. Normalized records should map into the app domain:
+
+- `Investor`, `Fund`, `Filing`, and `Holding` for 13F portfolios.
+- `CongressMember` and `CongressTrade` for policymaker activity.
+- `Insider` and `InsiderTrade` for Form 4 activity.
+- `Stock`, `Signal`, and `NewsItem` for cross-source research views.
+
+## Delay And Quality Labels
+
+Every live-data version should expose:
+
+- Filing date.
+- Reporting period or transaction date.
+- Disclosure delay where applicable.
+- Whether the record is original, amended, estimated, or normalized.
+- Source reference, such as accession number or disclosure document URL.
+
+## Signal Rules
+
+Initial signals should be explainable and rule-based:
+
+- New hedge fund position.
+- Large quarter-over-quarter portfolio increase.
+- Congress purchase with late disclosure.
+- Insider cluster buying.
+- Filing-related news overlap.
+
+## Phase 2 Implementation
+
+Add these files when live ingestion begins:
+
+- `lib/sec/edgar-client.ts`
+- `lib/sec/form13f-parser.ts`
+- `lib/sec/form4-parser.ts`
+- `lib/congress/house-disclosures.ts`
+- `lib/congress/senate-disclosures.ts`
+- `scripts/import-sec-13f.ts`
+- `scripts/import-sec-form4.ts`
+- `scripts/import-house-disclosures.ts`
+- `scripts/import-senate-disclosures.ts`
+
+Supabase should sit behind repository functions so the UI does not depend directly on the storage layer.

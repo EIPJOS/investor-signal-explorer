@@ -1,38 +1,89 @@
 import type { Metadata } from "next";
 import { Card, SectionHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { publicDataSources, sourcePrinciples } from "@/lib/data-sources/source-registry";
 
 export const metadata: Metadata = {
   title: "Data Sources",
   description: "Future data source architecture for SEC 13F filings, EDGAR APIs, Form 4 insider filings, and congressional disclosures."
 };
 
-const sources = [
-  { title: "SEC Form 13F filings", text: "Quarterly institutional holdings filed by investment managers that meet SEC reporting thresholds." },
-  { title: "SEC EDGAR API", text: "Company submissions, filing metadata, accession numbers, and future import scheduling." },
-  { title: "SEC Form 4 insider filings", text: "Officer, director, and beneficial owner transaction filings for insider activity monitoring." },
-  { title: "House financial disclosures", text: "Periodic transaction reports published for members of the U.S. House of Representatives." },
-  { title: "Senate financial disclosures", text: "Senate transaction disclosures for policymakers and related reporting delay analysis." }
-];
-
 export default function DataSourcesPage() {
   return (
     <main className="space-y-6">
       <div>
-        <Badge tone="blue">Phase 2 architecture</Badge>
+        <Badge tone="blue">Original public-data architecture</Badge>
         <h1 className="mt-3 text-3xl font-semibold text-white">Data Sources</h1>
         <p className="mt-3 max-w-3xl text-slate-300">
-          This version uses local mock data only. The source plan below shows where live SEC and congressional data will enter the system later.
+          This version uses local mock data, but the product is shaped around public financial records and a clean normalization layer for future imports.
         </p>
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
-        {sources.map((source) => (
-          <Card key={source.title}>
-            <h2 className="text-lg font-semibold text-white">{source.title}</h2>
-            <p className="mt-3 leading-7 text-slate-300">{source.text}</p>
+
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {publicDataSources.map((source) => (
+          <Card key={source.id}>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-mint">{source.category}</p>
+                <h2 className="mt-2 text-lg font-semibold text-white">{source.name}</h2>
+              </div>
+              <Badge tone={source.status === "Ready for Adapter" ? "mint" : source.status === "Planned" ? "amber" : "slate"}>
+                {source.status}
+              </Badge>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-slate-300">{source.notes}</p>
+            <dl className="mt-4 space-y-3 text-sm">
+              <div>
+                <dt className="text-slate-500">Cadence</dt>
+                <dd className="text-slate-200">{source.cadence}</dd>
+              </div>
+              <div>
+                <dt className="text-slate-500">Normalized into</dt>
+                <dd className="text-slate-200">{source.normalizedEntities.join(", ")}</dd>
+              </div>
+              <div>
+                <dt className="text-slate-500">Phase 2 path</dt>
+                <dd className="font-mono text-xs text-mint">{source.phaseTwoPath}</dd>
+              </div>
+            </dl>
           </Card>
         ))}
-      </div>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <Card>
+          <SectionHeader title="Research Principles" eyebrow="How imports should behave" />
+          <div className="space-y-3">
+            {sourcePrinciples.map((principle) => (
+              <div key={principle} className="rounded-md border border-line bg-ink/50 p-3 text-sm leading-6 text-slate-300">
+                {principle}
+              </div>
+            ))}
+          </div>
+        </Card>
+        <Card>
+          <SectionHeader title="Normalized Data Flow" eyebrow="Phase 2 pipeline" />
+          <div className="grid gap-3 text-sm text-slate-300">
+            <div className="rounded-md bg-ink/60 p-4">
+              <span className="font-semibold text-white">1. Discover filings</span>
+              <p className="mt-1">Find accession numbers, filing dates, form types, and document locations from public records.</p>
+            </div>
+            <div className="rounded-md bg-ink/60 p-4">
+              <span className="font-semibold text-white">2. Preserve raw references</span>
+              <p className="mt-1">Keep source identifiers and raw filing metadata so every normalized row can be traced.</p>
+            </div>
+            <div className="rounded-md bg-ink/60 p-4">
+              <span className="font-semibold text-white">3. Normalize entities</span>
+              <p className="mt-1">Map names, CIKs, tickers, CUSIPs, dates, and value ranges into the app interfaces.</p>
+            </div>
+            <div className="rounded-md bg-ink/60 p-4">
+              <span className="font-semibold text-white">4. Generate explainable signals</span>
+              <p className="mt-1">Create research cards only from transparent rules such as new position, large increase, late disclosure, or cluster buying.</p>
+            </div>
+          </div>
+        </Card>
+      </section>
+
       <Card>
         <SectionHeader title="Disclaimer" eyebrow="Research use only" />
         <p className="text-slate-300">
