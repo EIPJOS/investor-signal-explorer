@@ -15,7 +15,7 @@ export function Badge({
   tone = "slate"
 }: Readonly<{ children: React.ReactNode; tone?: keyof typeof toneMap }>) {
   return (
-    <span className={clsx("inline-flex items-center rounded-md border px-2 py-1 text-xs font-medium", toneMap[tone])}>
+    <span className={clsx("inline-flex items-center rounded-md border px-2.5 py-1 text-xs font-medium whitespace-nowrap", toneMap[tone])}>
       {children}
     </span>
   );

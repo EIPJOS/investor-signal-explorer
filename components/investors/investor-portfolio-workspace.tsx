@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { MockWarning } from "@/components/ui/mock-warning";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { holdingStatusTone } from "@/components/ui/status-tone";
 import { formatCurrency } from "@/data/mock-data";
@@ -61,6 +62,9 @@ export function InvestorPortfolioWorkspace({
             </button>
           ))}
         </div>
+      </div>
+      <div className="mb-4">
+        <MockWarning compact />
       </div>
 
       {active === "Holdings" ? <HoldingsMode rows={holdings} /> : null}

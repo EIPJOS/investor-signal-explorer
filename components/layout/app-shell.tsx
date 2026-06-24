@@ -43,8 +43,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <ShieldCheck size={21} />
           </span>
           <span>
-            <span className="block text-base font-semibold text-white">Investor Signal</span>
-            <span className="block text-xs text-slate-400">Explorer</span>
+            <span className="block text-base font-semibold text-white">investina</span>
+            <span className="block text-xs text-slate-400">research dashboard</span>
           </span>
         </Link>
         <nav className="mt-9 space-y-1">
@@ -69,7 +69,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="absolute bottom-6 left-5 right-5 rounded-md border border-line bg-panel p-4">
           <div className="flex items-center gap-2 text-sm font-medium text-white">
             <Newspaper size={16} className="text-mint" />
-            Research mode
+            Mock research mode
           </div>
           <p className="mt-2 text-xs leading-5 text-slate-400">
             Mock data only. Public filings can be delayed, incomplete, or amended.
@@ -81,7 +81,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-semibold text-white">
             <ShieldCheck size={20} className="text-mint" />
-            Investor Signal Explorer
+            investina
           </Link>
           <button
             aria-label="Toggle navigation"

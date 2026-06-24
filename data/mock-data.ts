@@ -88,16 +88,68 @@ export const investors: Investor[] = [
   }
 ];
 
-export const filings: Filing[] = investors.map((investor) => ({
-  id: `${investor.slug}-2026q1`,
-  investorSlug: investor.slug,
-  form: "13F-HR",
-  period: investor.slug === "stanley-druckenmiller" ? "2025 Q4" : "2026 Q1",
-  filedAt: investor.lastFilingDate,
-  source: investor.slug === "stanley-druckenmiller"
-    ? "Mock-normalized public 13F summary; Dataroma manager page not available"
-    : "Mock-normalized SEC 13F row set cross-checked against public summaries"
-}));
+export const filings: Filing[] = [
+  {
+    id: "warren-buffett-2026q1",
+    investorSlug: "warren-buffett",
+    form: "13F-HR",
+    period: "2026 Q1",
+    reportDate: "2026-03-31",
+    filedAt: "2026-05-15",
+    source: "Mock-normalized SEC 13F row set cross-checked against public summaries",
+    cik: "0001067983",
+    accessionNumber: "0000950123-26-000000",
+    sourceUrl: "https://www.sec.gov/edgar/search/"
+  },
+  {
+    id: "bill-ackman-2026q1",
+    investorSlug: "bill-ackman",
+    form: "13F-HR",
+    period: "2026 Q1",
+    reportDate: "2026-03-31",
+    filedAt: "2026-05-15",
+    source: "Mock-normalized SEC 13F row set cross-checked against public summaries",
+    cik: "0001336528",
+    accessionNumber: "0000950123-26-000001",
+    sourceUrl: "https://www.sec.gov/edgar/search/"
+  },
+  {
+    id: "david-tepper-2026q1",
+    investorSlug: "david-tepper",
+    form: "13F-HR",
+    period: "2026 Q1",
+    reportDate: "2026-03-31",
+    filedAt: "2026-05-15",
+    source: "Mock-normalized SEC 13F row set cross-checked against public summaries",
+    cik: "0001006438",
+    accessionNumber: "0000950123-26-000002",
+    sourceUrl: "https://www.sec.gov/edgar/search/"
+  },
+  {
+    id: "seth-klarman-2026q1",
+    investorSlug: "seth-klarman",
+    form: "13F-HR",
+    period: "2026 Q1",
+    reportDate: "2026-03-31",
+    filedAt: "2026-05-15",
+    source: "Mock-normalized SEC 13F row set cross-checked against public summaries",
+    cik: "0001061768",
+    accessionNumber: "0000950123-26-000003",
+    sourceUrl: "https://www.sec.gov/edgar/search/"
+  },
+  {
+    id: "stanley-druckenmiller-2025q4",
+    investorSlug: "stanley-druckenmiller",
+    form: "13F-HR",
+    period: "2025 Q4",
+    reportDate: "2025-12-31",
+    filedAt: "2026-02-17",
+    source: "Mock-normalized public 13F summary; Dataroma manager page not available",
+    cik: "0001536411",
+    accessionNumber: "0000950123-26-000004",
+    sourceUrl: "https://www.sec.gov/edgar/search/"
+  }
+];
 
 export const stocks: Stock[] = [
   { ticker: "VST", company: "Vistra Corp.", sector: "Utilities", pricePlaceholder: "$205.40", marketCap: "$68B", summary: "Power generation exposure tied to grid demand and data center electrification." },
@@ -151,6 +203,7 @@ export const holdings: Holding[] = [
   { investorSlug: "bill-ackman", ticker: "MSFT", company: "Microsoft", shares: 5645000, marketValue: 2090620000, weight: 15.26, qoqChange: 100, status: "New", sector: "Technology" },
   { investorSlug: "bill-ackman", ticker: "QSR", company: "Restaurant Brands International", shares: 22620000, marketValue: 1671400000, weight: 12.2, qoqChange: 0, status: "Increased", sector: "Consumer Discretionary" },
   { investorSlug: "bill-ackman", ticker: "META", company: "Meta Platforms", shares: 2660000, marketValue: 1520700000, weight: 11.1, qoqChange: 0, status: "Increased", sector: "Communication Services" },
+  { investorSlug: "bill-ackman", ticker: "VST", company: "Vistra", shares: 4100000, marketValue: 842140000, weight: 6.15, qoqChange: 100, status: "New", sector: "Utilities" },
   { investorSlug: "david-tepper", ticker: "AMZN", company: "Amazon", shares: 4319000, marketValue: 899100000, weight: 15.16, qoqChange: 0, status: "Increased", sector: "Consumer Discretionary" },
   { investorSlug: "david-tepper", ticker: "MU", company: "Micron Technology", shares: 6849000, marketValue: 562200000, weight: 9.48, qoqChange: 0, status: "Increased", sector: "Technology" },
   { investorSlug: "david-tepper", ticker: "GOOG", company: "Alphabet Class C", shares: 1733000, marketValue: 496900000, weight: 8.38, qoqChange: 0, status: "Increased", sector: "Communication Services" },
@@ -166,7 +219,8 @@ export const holdings: Holding[] = [
   { investorSlug: "stanley-druckenmiller", ticker: "EWZ", company: "iShares MSCI Brazil ETF", shares: 3600000, marketValue: 104000000, weight: 8.9, qoqChange: 100, status: "New", sector: "ETF" },
   { investorSlug: "stanley-druckenmiller", ticker: "XLF", company: "Financial Select Sector SPDR Fund", shares: 5500000, marketValue: 276000000, weight: 23.6, qoqChange: 100, status: "New", sector: "ETF" },
   { investorSlug: "stanley-druckenmiller", ticker: "AMZN", company: "Amazon", shares: 738000, marketValue: 153700000, weight: 13.2, qoqChange: 68.9, status: "Increased", sector: "Consumer Discretionary" },
-  { investorSlug: "stanley-druckenmiller", ticker: "GOOGL", company: "Alphabet", shares: 385000, marketValue: 110700000, weight: 9.5, qoqChange: 277.5, status: "Increased", sector: "Communication Services" }
+  { investorSlug: "stanley-druckenmiller", ticker: "GOOGL", company: "Alphabet", shares: 385000, marketValue: 110700000, weight: 9.5, qoqChange: 277.5, status: "Increased", sector: "Communication Services" },
+  { investorSlug: "stanley-druckenmiller", ticker: "VST", company: "Vistra", shares: 5300000, marketValue: 1088620000, weight: 27.9, qoqChange: 67.3, status: "Increased", sector: "Utilities" }
 ];
 
 export const congressMembers: CongressMember[] = [
@@ -224,10 +278,17 @@ export const newsItems: NewsItem[] = [
 ];
 
 export function formatCurrency(value: number) {
-  if (value >= 1_000_000_000_000) return `$${(value / 1_000_000_000_000).toFixed(1)}T`;
-  if (value >= 1_000_000_000) return `$${(value / 1_000_000_000).toFixed(1)}B`;
-  if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
-  return `$${value.toLocaleString()}`;
+  const abs = Math.abs(value);
+  const sign = value < 0 ? "-" : "";
+  if (abs >= 1_000_000_000_000) return `${sign}$${trimDecimal(abs / 1_000_000_000_000)}T`;
+  if (abs >= 1_000_000_000) return `${sign}$${trimDecimal(abs / 1_000_000_000)}B`;
+  if (abs >= 1_000_000) return `${sign}$${trimDecimal(abs / 1_000_000)}M`;
+  if (abs >= 1_000) return `${sign}$${trimDecimal(abs / 1_000)}K`;
+  return `${sign}$${Math.round(abs).toLocaleString()}`;
+}
+
+function trimDecimal(value: number) {
+  return value.toFixed(1).replace(".0", "");
 }
 
 export function getInvestor(slug: string) {

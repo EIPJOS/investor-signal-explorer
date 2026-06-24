@@ -37,6 +37,10 @@ export default async function StockDetailPage({ params }: { params: Promise<{ ti
   const stockSignals = getStockSignals(stock.ticker);
   const stockNews = newsItems.filter((news) => news.ticker === stock.ticker);
   const tabs = ["Overview", "Hedge Fund Ownership", "Congress Trades", "Insider Trades", "Signals", "News"];
+  const lastSignal = stockSignals[0];
+  const latestHolderDate = "2026-05-15";
+  const latestReportDate = "2026-03-31";
+  const lastUpdated = "2026-06-24";
 
   return (
     <main className="space-y-6">
@@ -72,8 +76,28 @@ export default async function StockDetailPage({ params }: { params: Promise<{ ti
         <Card><p className="text-sm text-slate-400">Signals</p><p className="mt-2 text-2xl font-semibold text-white">{stockSignals.length}</p></Card>
       </section>
 
+      <section className="grid gap-6 lg:grid-cols-2">
+        <Card>
+          <SectionHeader title="Signal Summary" eyebrow="Why this ticker is watched" />
+          <p className="leading-7 text-slate-300">
+            {lastSignal
+              ? `${stock.ticker} is on the watchlist because ${lastSignal.actor} triggered a ${lastSignal.type.toLowerCase()} signal: ${lastSignal.explanation}`
+              : `${stock.ticker} is included because it appears in the mock ownership, congressional, insider, or news universe.`}
+          </p>
+        </Card>
+        <Card>
+          <SectionHeader title="Data Freshness" eyebrow="Filing lag matters" />
+          <dl className="grid gap-3 text-sm">
+            <div className="flex justify-between gap-4"><dt className="text-slate-500">Latest report date</dt><dd className="text-slate-200">{latestReportDate}</dd></div>
+            <div className="flex justify-between gap-4"><dt className="text-slate-500">Latest filing date</dt><dd className="text-slate-200">{latestHolderDate}</dd></div>
+            <div className="flex justify-between gap-4"><dt className="text-slate-500">Last app update</dt><dd className="text-slate-200">{lastUpdated}</dd></div>
+          </dl>
+          <p className="mt-4 text-xs leading-5 text-slate-500">13F data is delayed and should be read as a portfolio snapshot, not a real-time trade feed.</p>
+        </Card>
+      </section>
+
       <Card id="hedge-fund-ownership">
-        <SectionHeader title="Who Owns This Stock?" eyebrow="Hedge fund ownership" />
+        <SectionHeader title="Who Owns This Stock?" eyebrow="Hedge Fund Ownership" />
         <StockOwnershipTable rows={holders} />
       </Card>
 

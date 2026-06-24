@@ -1,6 +1,6 @@
-# Investor Signal Explorer
+# investina
 
-Investor Signal Explorer is a production-oriented Next.js research dashboard for exploring famous investor portfolios, mock hedge fund 13F holdings, congressional stock trades, insider transactions, ownership signals, and related news.
+investina is a production-oriented Next.js research dashboard for exploring famous investor portfolios, mock hedge fund 13F holdings, congressional stock trades, insider transactions, ownership signals, and related news.
 
 The first version uses local mock data only. It does not scrape live sources, require paid APIs, or store data in Supabase yet.
 
@@ -92,7 +92,7 @@ They currently throw explicit "not implemented" errors so nobody accidentally ru
 
 ## Product Originality
 
-The functional category is public investor portfolio research, but the design, layout, wording, data model, source plan, and implementation are original to Investor Signal Explorer. Do not copy another product's branding, visual structure, source code, or database.
+The functional category is public investor portfolio research, but the design, layout, wording, data model, source plan, and implementation are original to investina. Do not copy another product's branding, visual structure, source code, or database.
 
 The data methodology is documented in `docs/data-methodology.md`.
 

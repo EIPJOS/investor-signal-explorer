@@ -28,8 +28,12 @@ export interface Filing {
   investorSlug: string;
   form: "13F-HR";
   period: string;
+  reportDate: string;
   filedAt: string;
   source: string;
+  cik: string;
+  accessionNumber: string;
+  sourceUrl: string;
 }
 
 export interface Holding {

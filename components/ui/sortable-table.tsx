@@ -90,7 +90,8 @@ export function SortableTable<T>({
                 <td
                   key={String(column.key)}
                   className={clsx(
-                    "whitespace-nowrap px-4 py-3 text-slate-200",
+                    "whitespace-nowrap px-5 py-3 text-slate-200",
+                    column.align === "right" ? "tabular-nums" : "",
                     column.align === "right" ? "text-right" : "text-left"
                   )}
                 >

@@ -5,13 +5,13 @@ import { AppShell } from "@/components/layout/app-shell";
 export const metadata: Metadata = {
   metadataBase: new URL("https://investor-signal-explorer.vercel.app"),
   title: {
-    default: "Investor Signal Explorer",
-    template: "%s | Investor Signal Explorer"
+    default: "investina",
+    template: "%s | investina"
   },
-  description: "Track the investors, insiders, and policymakers moving the market.",
+  description: "Track superinvestors, insiders, and political trades in one research dashboard.",
   openGraph: {
-    title: "Investor Signal Explorer",
-    description: "Track the investors, insiders, and policymakers moving the market.",
+    title: "investina",
+    description: "Track superinvestors, insiders, and political trades in one research dashboard.",
     type: "website"
   }
 };

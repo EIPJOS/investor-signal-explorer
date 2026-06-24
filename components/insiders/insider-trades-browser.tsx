@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
 import { SearchInput, SelectFilter } from "@/components/ui/filter-controls";
+import { MockWarning } from "@/components/ui/mock-warning";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { formatCurrency, insiderTrades } from "@/data/mock-data";
 import type { InsiderTrade } from "@/data/types";
@@ -26,6 +27,7 @@ export function InsiderTradesBrowser() {
         <SearchInput value={query} onChange={setQuery} placeholder="Ticker, executive, company, or title" />
         <SelectFilter label="Type" value={type} onChange={setType} options={["Buy/Sell", "Buy", "Sell"]} />
       </div>
+      <MockWarning compact />
       <SortableTable<InsiderTrade>
         rows={rows}
         columns={[

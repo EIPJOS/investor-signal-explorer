@@ -4,7 +4,7 @@ import { Card, SectionHeader } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Investor Signal Explorer and its educational research scope."
+  description: "About investina and its educational research scope."
 };
 
 export default function AboutPage() {
@@ -12,7 +12,7 @@ export default function AboutPage() {
     <main className="space-y-6">
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-mint">About</p>
-        <h1 className="mt-2 text-3xl font-semibold text-white">Investor Signal Explorer</h1>
+        <h1 className="mt-2 text-3xl font-semibold text-white">investina</h1>
         <p className="mt-3 max-w-3xl text-slate-300">
           A public investing research interface for exploring famous investor portfolios, hedge fund 13F holdings,
           Congress stock trades, insider transactions, ownership signals, and related news.

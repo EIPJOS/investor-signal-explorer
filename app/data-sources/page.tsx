@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card, SectionHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { publicDataSources, sourcePrinciples } from "@/lib/data-sources/source-registry";
+import { sourceTimingRows } from "@/data/source-timing";
 
 export const metadata: Metadata = {
   title: "Data Sources",
@@ -83,6 +84,35 @@ export default function DataSourcesPage() {
           </div>
         </Card>
       </section>
+
+      <Card>
+        <SectionHeader title="Important Limitation" eyebrow="Signal timing" />
+        <p className="mb-4 max-w-4xl text-sm leading-6 text-slate-300">
+          A 13F is not real-time trading data. It can be filed up to 45 days after quarter end, so a May update can reflect holdings from March 31 rather than trades made in May. investina should combine slower portfolio snapshots with faster source types as the data layer matures.
+        </p>
+        <div className="overflow-x-auto rounded-md border border-line scrollbar-thin">
+          <table className="min-w-full divide-y divide-line text-sm">
+            <thead className="bg-ink/80">
+              <tr>
+                <th className="px-4 py-3 text-left font-medium text-slate-300">Signal</th>
+                <th className="px-4 py-3 text-left font-medium text-slate-300">Typical timing</th>
+                <th className="px-4 py-3 text-left font-medium text-slate-300">Best source</th>
+                <th className="px-4 py-3 text-left font-medium text-slate-300">Why it matters</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-line bg-panel/70">
+              {sourceTimingRows.map((row) => (
+                <tr key={row.signal} className="hover:bg-panelSoft/60">
+                  <td className="px-4 py-3 font-medium text-white">{row.signal}</td>
+                  <td className="px-4 py-3 text-slate-300">{row.timing}</td>
+                  <td className="px-4 py-3 text-mint">{row.bestSource}</td>
+                  <td className="px-4 py-3 text-slate-400">{row.note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
 
       <Card>
         <SectionHeader title="Disclaimer" eyebrow="Research use only" />

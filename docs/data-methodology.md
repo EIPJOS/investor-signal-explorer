@@ -1,10 +1,10 @@
 # Data Methodology
 
-Investor Signal Explorer is designed as an original research product inspired by the general idea of public portfolio tracking, not by any specific site's design, layout, wording, code, or database.
+investina is designed as an original research product inspired by the general idea of public portfolio tracking, not by any specific site's design, layout, wording, code, or database.
 
 ## Reference Boundaries
 
-Reference products in this category show useful user needs: recent trade feeds, politician profiles, issuer activity, disclosure delays, trade size ranges, and filtering by party, chamber, state, transaction type, sector, and issuer. Investor Signal Explorer may support those research needs, but it should express them through its own navigation, visual system, data model, copy, and interaction design.
+Reference products in this category show useful user needs: recent trade feeds, politician profiles, issuer activity, disclosure delays, trade size ranges, and filtering by party, chamber, state, transaction type, sector, and issuer. investina may support those research needs, but it should express them through its own navigation, visual system, data model, copy, and interaction design.
 
 Do not reproduce another site's page composition, card styling, table presentation, branding, naming, copy, or proprietary data structure.
 

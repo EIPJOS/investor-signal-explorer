@@ -28,11 +28,11 @@ export default function HomePage() {
         <div>
           <Badge tone="mint">Public research dashboard</Badge>
           <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-5xl">
-            Investor Signal Explorer
+            investina
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
-            Track the investors, insiders, and policymakers moving the market.
-            Explore mock 13F portfolios, congressional trades, insider transactions, ownership changes, and related news in one research workspace.
+            Track superinvestors, insiders, and political trades in one research dashboard.
+            Explore mock 13F portfolios, congressional trades, insider transactions, ownership changes, and related news in one workspace.
           </p>
           <div className="mt-7 max-w-2xl">
             <GlobalSearch />
@@ -75,9 +75,9 @@ export default function HomePage() {
       <section className="grid gap-6 2xl:grid-cols-[1fr_11rem]">
         <PortfolioUpdateTape />
         <div className="hidden space-y-4 2xl:block">
-          <AdSlot />
-          <AdSlot label="Partner" />
-          <AdSlot label="Research" />
+          <AdSlot label="Future ad slot — disabled" />
+          <AdSlot label="Future sponsor slot — disabled" />
+          <AdSlot label="Future research promo — disabled" />
         </div>
       </section>
 

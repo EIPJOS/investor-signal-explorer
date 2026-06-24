@@ -42,8 +42,15 @@ export default async function InvestorDetailPage({ params }: { params: Promise<{
             <p className="mt-3 max-w-3xl text-slate-300">{investor.bio}</p>
           </div>
           <div className="rounded-md border border-line bg-ink/60 p-4 text-sm text-slate-300">
-            <p>Data source: {filing?.source}</p>
+            <p className="font-medium text-white">Source metadata</p>
+            <p className="mt-2">CIK: <span className="font-mono text-slate-100">{filing?.cik}</span></p>
+            <p className="mt-1">Accession: <span className="font-mono text-slate-100">{filing?.accessionNumber}</span></p>
+            <p className="mt-1">Report period: {filing?.period}</p>
+            <p className="mt-1">Report date: {filing?.reportDate}</p>
             <p className="mt-1">Filing date: {filing?.filedAt}</p>
+            <a className="mt-2 inline-flex text-mint" href={filing?.sourceUrl} target="_blank" rel="noreferrer">
+              Source link placeholder
+            </a>
           </div>
         </div>
       </Card>

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { SearchInput, SelectFilter } from "@/components/ui/filter-controls";
+import { MockWarning } from "@/components/ui/mock-warning";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { congressTrades } from "@/data/mock-data";
 import { slugify } from "@/data/congress-analytics";
@@ -47,6 +48,7 @@ export function CongressTradesBrowser() {
         <SelectFilter label="Asset" value={assetType} onChange={setAssetType} options={assetTypes} />
         <SelectFilter label="Size" value={size} onChange={setSize} options={sizes} />
       </div>
+      <MockWarning compact />
       <SortableTable<CongressTrade>
         rows={rows}
         columns={[
