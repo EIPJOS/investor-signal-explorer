@@ -115,6 +115,8 @@ The home dashboard includes a dense portfolio update tape with updated dates, ch
 
 The visible famous-investor mock holdings were corrected against public 13F summaries on June 24, 2026. Dataroma was used only as a manual checking reference where available. Live production data should come from SEC EDGAR and normalized records in our own database.
 
+Investor detail pages now include an original tabbed portfolio workspace with holdings, activity, buys, sells, and historical top-holdings views.
+
 ## Disclaimer
 
 This website is for educational and research purposes only. It is not investment advice. Public filings may be delayed, incomplete, or amended.

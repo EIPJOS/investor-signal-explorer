@@ -137,3 +137,23 @@ export interface PortfolioUpdate {
   topTicker: string;
   summary: string;
 }
+
+export interface PortfolioActivity {
+  id: string;
+  investorSlug: string;
+  period: string;
+  ticker: string;
+  company: string;
+  activity: "Buy" | "Add" | "Reduce" | "Sell";
+  activityPercent: number;
+  shareChange: number;
+  portfolioImpact: number;
+}
+
+export interface PortfolioHistorySnapshot {
+  id: string;
+  investorSlug: string;
+  period: string;
+  portfolioValue: number;
+  topHoldings: string[];
+}

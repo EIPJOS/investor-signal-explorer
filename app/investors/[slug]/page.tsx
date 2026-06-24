@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SectorAllocationChart, TopHoldingsChart } from "@/components/charts/portfolio-charts";
-import { HoldingsTable } from "@/components/investors/holdings-table";
+import { InvestorPortfolioWorkspace } from "@/components/investors/investor-portfolio-workspace";
 import { SignalCard } from "@/components/signals/signal-card";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
 import { holdingStatusTone } from "@/components/ui/status-tone";
+import { getInvestorActivities, getInvestorHistory } from "@/data/investor-activity";
 import { filings, formatCurrency, getHoldingsByInvestor, getInvestor, signals } from "@/data/mock-data";
 
 export function generateStaticParams() {
@@ -26,6 +27,8 @@ export default async function InvestorDetailPage({ params }: { params: Promise<{
   const investor = getInvestor(slug);
   if (!investor) notFound();
   const investorHoldings = getHoldingsByInvestor(slug);
+  const investorActivities = getInvestorActivities(slug);
+  const investorHistory = getInvestorHistory(slug);
   const filing = filings.find((item) => item.investorSlug === slug);
   const relatedSignals = signals.filter((signal) => investorHoldings.some((holding) => holding.ticker === signal.ticker)).slice(0, 3);
 
@@ -51,10 +54,7 @@ export default async function InvestorDetailPage({ params }: { params: Promise<{
         <Card><p className="text-sm text-slate-400">Top holding</p><p className="mt-2 text-2xl font-semibold text-white">{investor.topHolding}</p></Card>
       </section>
 
-      <Card>
-        <SectionHeader title="Holdings" eyebrow="Sortable table" />
-        <HoldingsTable rows={investorHoldings} />
-      </Card>
+      <InvestorPortfolioWorkspace holdings={investorHoldings} activities={investorActivities} history={investorHistory} />
 
       <section className="grid gap-6 lg:grid-cols-2">
         <Card><SectionHeader title="Top Holdings" eyebrow="Market value" /><TopHoldingsChart holdings={investorHoldings} /></Card>
