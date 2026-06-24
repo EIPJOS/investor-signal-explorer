@@ -4,6 +4,8 @@ Investor Signal Explorer is a production-oriented Next.js research dashboard for
 
 The first version uses local mock data only. It does not scrape live sources, require paid APIs, or store data in Supabase yet.
 
+Live site: https://investina.vercel.app
+
 ## Tech Stack
 
 - Next.js App Router
