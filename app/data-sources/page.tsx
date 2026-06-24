@@ -88,7 +88,7 @@ export default function DataSourcesPage() {
       <Card>
         <SectionHeader title="Important Limitation" eyebrow="Signal timing" />
         <p className="mb-4 max-w-4xl text-sm leading-6 text-slate-300">
-          A 13F is not real-time trading data. It can be filed up to 45 days after quarter end, so a May update can reflect holdings from March 31 rather than trades made in May. investina should combine slower portfolio snapshots with faster source types as the data layer matures.
+          A 13F is not real-time trading data. It can be filed up to 45 days after quarter end, so a May update can reflect holdings from March 31 rather than trades made in May. Investina should combine slower portfolio snapshots with faster source types as the data layer matures.
         </p>
         <div className="overflow-x-auto rounded-md border border-line scrollbar-thin">
           <table className="min-w-full divide-y divide-line text-sm">

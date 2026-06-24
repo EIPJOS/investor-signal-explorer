@@ -28,7 +28,7 @@ export default function HomePage() {
         <div>
           <Badge tone="mint">Public research dashboard</Badge>
           <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-5xl">
-            investina
+            Investina
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
             Track superinvestors, insiders, and political trades in one research dashboard.

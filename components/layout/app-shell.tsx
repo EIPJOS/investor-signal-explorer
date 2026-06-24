@@ -43,7 +43,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <ShieldCheck size={21} />
           </span>
           <span>
-            <span className="block text-base font-semibold text-white">investina</span>
+            <span className="block text-base font-semibold text-white">Investina</span>
             <span className="block text-xs text-slate-400">research dashboard</span>
           </span>
         </Link>
@@ -81,7 +81,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-semibold text-white">
             <ShieldCheck size={20} className="text-mint" />
-            investina
+            Investina
           </Link>
           <button
             aria-label="Toggle navigation"

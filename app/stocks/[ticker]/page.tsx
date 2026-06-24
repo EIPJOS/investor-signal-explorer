@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
 import { SignalCard } from "@/components/signals/signal-card";
 import { StockCongressTable, StockInsiderTable, StockOwnershipTable } from "@/components/stocks/stock-tables";
+import { getRelatedStocks, getTickerResearchQuestions } from "@/data/stock-insights";
 import {
   congressTrades,
   getStock,
@@ -36,6 +37,8 @@ export default async function StockDetailPage({ params }: { params: Promise<{ ti
   const stockInsiderTrades = insiderTrades.filter((trade) => trade.ticker === stock.ticker);
   const stockSignals = getStockSignals(stock.ticker);
   const stockNews = newsItems.filter((news) => news.ticker === stock.ticker);
+  const relatedStocks = getRelatedStocks(stock.ticker);
+  const researchQuestions = getTickerResearchQuestions(stock.ticker);
   const tabs = ["Overview", "Hedge Fund Ownership", "Congress Trades", "Insider Trades", "Signals", "News"];
   const lastSignal = stockSignals[0];
   const latestHolderDate = "2026-05-15";
@@ -129,6 +132,36 @@ export default async function StockDetailPage({ params }: { params: Promise<{ ti
                 <p className="mt-2 text-sm leading-6 text-slate-300">{news.summary}</p>
               </article>
             )) : <p className="text-sm text-slate-400">No mock news for this ticker yet.</p>}
+          </div>
+        </Card>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <Card>
+          <SectionHeader title="Related Stocks" eyebrow="Continue research" />
+          <div className="grid gap-3 sm:grid-cols-2">
+            {relatedStocks.map((related) => (
+              <a key={related.ticker} href={`/stocks/${related.ticker}`} className="rounded-md border border-line bg-ink/55 p-3 transition hover:border-mint/60">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="font-semibold text-white">{related.ticker}</p>
+                    <p className="mt-1 text-sm text-slate-400">{related.company}</p>
+                  </div>
+                  <Badge tone="blue">{related.sector}</Badge>
+                </div>
+              </a>
+            ))}
+          </div>
+        </Card>
+        <Card>
+          <SectionHeader title={`${stock.ticker} Research Questions`} eyebrow="SEO research guide" />
+          <div className="space-y-3">
+            {researchQuestions.map((item) => (
+              <details key={item.question} className="rounded-md border border-line bg-ink/55 p-4">
+                <summary className="cursor-pointer font-semibold text-white">{item.question}</summary>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{item.answer}</p>
+              </details>
+            ))}
           </div>
         </Card>
       </section>
