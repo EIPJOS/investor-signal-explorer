@@ -8,23 +8,25 @@ import { slugify } from "@/data/congress-analytics";
 
 export function GlobalSearch() {
   const [query, setQuery] = useState("");
+  const normalizedQuery = query.trim().toLowerCase();
   const results = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
-    if (!normalized) return [];
+    if (!normalizedQuery) return [];
     return [
       ...stocks.map((stock) => ({ label: `${stock.ticker} - ${stock.company}`, href: `/stocks/${stock.ticker}`, type: "Stock" })),
       ...investors.map((investor) => ({ label: `${investor.name} - ${investor.firm}`, href: `/investors/${investor.slug}`, type: "Investor" })),
       ...congressMembers.map((member) => ({ label: `${member.name} - ${member.chamber}`, href: `/congress/politicians/${slugify(member.name)}`, type: "Policymaker" }))
     ]
-      .filter((item) => item.label.toLowerCase().includes(normalized))
+      .filter((item) => item.label.toLowerCase().includes(normalizedQuery))
       .slice(0, 6);
-  }, [query]);
+  }, [normalizedQuery]);
 
   return (
     <div className="relative">
       <label className="flex items-center gap-3 rounded-md border border-line bg-ink/80 px-4 py-3 text-slate-400">
         <Search size={18} />
         <input
+          type="search"
+          aria-label="Search ticker, investor, or politician"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search ticker, investor, or politician"
@@ -39,6 +41,11 @@ export function GlobalSearch() {
               <span className="text-xs text-slate-400">{result.type}</span>
             </Link>
           ))}
+        </div>
+      ) : null}
+      {normalizedQuery && results.length === 0 ? (
+        <div className="absolute left-0 right-0 top-full z-10 mt-2 rounded-md border border-line bg-panel px-4 py-3 text-sm text-slate-400 shadow-glow">
+          No matching stock, investor, or politician.
         </div>
       ) : null}
     </div>

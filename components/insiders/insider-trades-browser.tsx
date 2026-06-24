@@ -4,14 +4,13 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
-import { SearchInput, SelectFilter } from "@/components/ui/filter-controls";
+import { SelectFilter } from "@/components/ui/filter-controls";
 import { MockWarning } from "@/components/ui/mock-warning";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { formatCurrency, insiderTrades } from "@/data/mock-data";
 import type { InsiderTrade } from "@/data/types";
 
 export function InsiderTradesBrowser() {
-  const [query, setQuery] = useState("");
   const [type, setType] = useState("Buy/Sell");
   const latestFiling = insiderTrades.map((trade) => trade.filingDate).sort((a, b) => b.localeCompare(a))[0] ?? "N/A";
   const buys = insiderTrades.filter((trade) => trade.type === "Buy");
@@ -21,11 +20,8 @@ export function InsiderTradesBrowser() {
     (clusterId) => insiderTrades.filter((trade) => trade.clusterId === clusterId).length > 1
   );
   const rows = useMemo(() => {
-    return insiderTrades.filter((trade) => {
-      const text = `${trade.executive} ${trade.title} ${trade.ticker} ${trade.company}`.toLowerCase();
-      return text.includes(query.toLowerCase()) && (type === "Buy/Sell" || trade.type === type);
-    });
-  }, [query, type]);
+    return insiderTrades.filter((trade) => type === "Buy/Sell" || trade.type === type);
+  }, [type]);
   const clusters = clusterIds.map((clusterId) => {
     const trades = insiderTrades.filter((trade) => trade.clusterId === clusterId);
     return {
@@ -46,8 +42,7 @@ export function InsiderTradesBrowser() {
         <Card><p className="text-sm text-slate-400">Cluster groups</p><p className="mt-2 text-2xl font-semibold text-mint">{clusters.length}</p></Card>
         <Card><p className="text-sm text-slate-400">Buy value</p><p className="mt-2 text-2xl font-semibold text-white">{formatCurrency(totalBuyValue)}</p><p className="mt-2 text-xs text-slate-500">Latest filing {latestFiling}</p></Card>
       </section>
-      <div className="grid gap-3 rounded-md border border-line bg-panel/70 p-4 md:grid-cols-[1fr_180px]">
-        <SearchInput value={query} onChange={setQuery} placeholder="Ticker, executive, company, or title" />
+      <div className="grid gap-3 rounded-md border border-line bg-panel/70 p-4 md:grid-cols-[180px]">
         <SelectFilter label="Type" value={type} onChange={setType} options={["Buy/Sell", "Buy", "Sell"]} />
       </div>
       <MockWarning compact />
