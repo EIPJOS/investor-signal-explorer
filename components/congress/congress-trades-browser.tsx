@@ -7,7 +7,7 @@ import { SearchInput, SelectFilter } from "@/components/ui/filter-controls";
 import { MockWarning } from "@/components/ui/mock-warning";
 import { SortableTable } from "@/components/ui/sortable-table";
 import { congressTrades } from "@/data/mock-data";
-import { slugify } from "@/data/congress-analytics";
+import { estimateTradeValue, slugify } from "@/data/congress-analytics";
 import type { CongressTrade } from "@/data/types";
 
 export function CongressTradesBrowser() {
@@ -20,7 +20,10 @@ export function CongressTradesBrowser() {
   const [size, setSize] = useState("All sizes");
   const states = ["All states", ...Array.from(new Set(congressTrades.map((trade) => trade.state))).sort()];
   const assetTypes = ["All assets", ...Array.from(new Set(congressTrades.map((trade) => trade.assetType))).sort()];
-  const sizes = ["All sizes", ...Array.from(new Set(congressTrades.map((trade) => trade.valueRange)))];
+  const sizes = [
+    "All sizes",
+    ...Array.from(new Set(congressTrades.map((trade) => trade.valueRange))).sort((a, b) => estimateTradeValue(a) - estimateTradeValue(b))
+  ];
 
   const rows = useMemo(() => {
     return congressTrades.filter((trade) => {
@@ -78,7 +81,7 @@ export function CongressTradesBrowser() {
           { key: "assetType", header: "Asset", accessor: (row) => row.assetType },
           { key: "transactionDate", header: "Transaction", accessor: (row) => row.transactionDate },
           { key: "disclosureDate", header: "Disclosure", accessor: (row) => row.disclosureDate },
-          { key: "valueRange", header: "Value range", accessor: (row) => row.valueRange },
+          { key: "valueRange", header: "Value range", accessor: (row) => row.valueRange, sortValue: (row) => estimateTradeValue(row.valueRange), align: "right" },
           { key: "price", header: "Price", accessor: (row) => row.price ?? "N/A", align: "right" },
           {
             key: "daysDelayed",

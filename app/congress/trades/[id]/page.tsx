@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
+import { MockWarning } from "@/components/ui/mock-warning";
 import { estimateTradeValue, getCongressTrade, slugify } from "@/data/congress-analytics";
 import { congressTrades, formatCurrency } from "@/data/mock-data";
 
@@ -27,6 +28,7 @@ export default async function TradeDetailPage({ params }: { params: Promise<{ id
 
   return (
     <main className="space-y-6">
+      <MockWarning />
       <Card>
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
@@ -42,6 +44,9 @@ export default async function TradeDetailPage({ params }: { params: Promise<{ id
             </Link>
             <Link href={`/congress/issuers/${trade.ticker}`} className="rounded-md border border-line px-3 py-2 text-sm text-slate-300 hover:bg-panelSoft">
               Issuer
+            </Link>
+            <Link href={`/stocks/${trade.ticker}`} className="rounded-md border border-line px-3 py-2 text-sm text-slate-300 hover:bg-panelSoft">
+              Stock page
             </Link>
           </div>
         </div>

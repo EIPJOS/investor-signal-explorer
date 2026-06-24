@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CongressDetailTradesTable } from "@/components/congress/congress-detail-tables";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
+import { MockWarning } from "@/components/ui/mock-warning";
 import {
   estimateTradeValue,
   getCongressTradesByTicker,
@@ -39,6 +40,7 @@ export default async function IssuerDetailPage({ params }: { params: Promise<{ t
 
   return (
     <main className="space-y-6">
+      <MockWarning />
       <Card>
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
