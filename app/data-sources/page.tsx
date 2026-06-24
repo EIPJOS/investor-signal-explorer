@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Card, SectionHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { MockWarning } from "@/components/ui/mock-warning";
 import { publicDataSources, sourcePrinciples } from "@/lib/data-sources/source-registry";
 import { sourceTimingRows } from "@/data/source-timing";
 
@@ -19,6 +20,32 @@ export default function DataSourcesPage() {
           This version uses local mock data, but the product is shaped around public financial records and a clean normalization layer for future imports.
         </p>
       </div>
+      <MockWarning />
+
+      <section className="grid gap-4 md:grid-cols-4">
+        <Card>
+          <p className="text-sm text-slate-400">Current mode</p>
+          <p className="mt-2 text-2xl font-semibold text-white">Mock</p>
+          <p className="mt-2 text-xs text-slate-500">No paid APIs required</p>
+        </Card>
+        <Card>
+          <p className="text-sm text-slate-400">Tracked source types</p>
+          <p className="mt-2 text-2xl font-semibold text-white">{publicDataSources.length}</p>
+          <p className="mt-2 text-xs text-slate-500">SEC, Congress, insider, news</p>
+        </Card>
+        <Card>
+          <p className="text-sm text-slate-400">Adapter-ready</p>
+          <p className="mt-2 text-2xl font-semibold text-mint">
+            {publicDataSources.filter((source) => source.status === "Ready for Adapter").length}
+          </p>
+          <p className="mt-2 text-xs text-slate-500">Planned import scripts named below</p>
+        </Card>
+        <Card>
+          <p className="text-sm text-slate-400">Traceability target</p>
+          <p className="mt-2 text-2xl font-semibold text-white">100%</p>
+          <p className="mt-2 text-xs text-slate-500">Every normalized row should keep source metadata</p>
+        </Card>
+      </section>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {publicDataSources.map((source) => (
@@ -116,8 +143,9 @@ export default function DataSourcesPage() {
 
       <Card>
         <SectionHeader title="Disclaimer" eyebrow="Research use only" />
-        <p className="text-slate-300">
-          This website is for educational and research purposes only. It is not investment advice. Public filings may be delayed, incomplete, or amended.
+        <p className="leading-7 text-slate-300">
+          This website is for educational and research purposes only. It is not investment advice. Public filings may be delayed,
+          incomplete, amended, or normalized incorrectly until source documents and importer tests are fully wired into the app.
         </p>
       </Card>
     </main>
