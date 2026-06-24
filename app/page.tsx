@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight, Clock, Landmark, ShieldAlert, TrendingUp, UserRoundCheck } from "lucide-react";
+import { AdSlot } from "@/components/dashboard/ad-slot";
 import { GlobalSearch } from "@/components/dashboard/global-search";
+import { PortfolioUpdateTape } from "@/components/dashboard/portfolio-update-tape";
 import { SignalCard } from "@/components/signals/signal-card";
 import { Badge } from "@/components/ui/badge";
 import { Card, SectionHeader } from "@/components/ui/card";
@@ -68,6 +70,15 @@ export default function HomePage() {
             </Card>
           );
         })}
+      </section>
+
+      <section className="grid gap-6 2xl:grid-cols-[1fr_11rem]">
+        <PortfolioUpdateTape />
+        <div className="hidden space-y-4 2xl:block">
+          <AdSlot />
+          <AdSlot label="Partner" />
+          <AdSlot label="Research" />
+        </div>
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1fr_0.9fr]">

@@ -107,6 +107,10 @@ The Congress section now includes original mock-data views for:
 
 These features are intended to support public disclosure research while keeping the design and implementation original.
 
+## Dashboard Retention Modules
+
+The home dashboard includes a dense portfolio update tape with updated dates, change counts, top tickers, and compact ownership stat panels. The layout also includes reserved sponsor slots for future monetization once traffic is stable.
+
 ## Disclaimer
 
 This website is for educational and research purposes only. It is not investment advice. Public filings may be delayed, incomplete, or amended.

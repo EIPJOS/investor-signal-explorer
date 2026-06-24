@@ -126,3 +126,14 @@ export interface NewsItem {
   publishedAt: string;
   summary: string;
 }
+
+export interface PortfolioUpdate {
+  id: string;
+  investorName: string;
+  firm: string;
+  slug?: string;
+  updatedAt: string;
+  changeCount: number;
+  topTicker: string;
+  summary: string;
+}
