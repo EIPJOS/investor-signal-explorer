@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SignalsBrowser } from "@/components/signals/signals-browser";
+import { MockWarning } from "@/components/ui/mock-warning";
 
 export const metadata: Metadata = {
   title: "Signals",
@@ -16,6 +17,7 @@ export default function SignalsPage() {
           Sort and filter mock signals grouped by new hedge fund positions, large increases, Congress purchases, insider cluster buying, and holding-related news.
         </p>
       </div>
+      <MockWarning />
       <SignalsBrowser />
     </main>
   );
